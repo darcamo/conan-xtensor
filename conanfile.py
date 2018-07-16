@@ -16,6 +16,7 @@ class XtensorConan(ConanFile):
 
     def requirements(self):
         self.requires("xtl/0.4.12@darcamo/stable")
+        self.requires("xsimd/6.0.0@darcamo/stable")
 
     def source(self):
         tools.get("https://github.com/QuantStack/xtensor/archive/{0}.zip".format(self.version))
@@ -30,6 +31,7 @@ conan_basic_setup()""")
         cmake = CMake(self)
         os.mkdir("build")
         shutil.move("conanbuildinfo.cmake", "build/")
+        cmake.definitions["XTENSOR_USE_XSIMD"] = "ON"
         cmake.configure(source_folder="sources", build_folder="build")
         cmake.install()
 
