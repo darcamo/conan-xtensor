@@ -5,7 +5,7 @@ import os
 
 class XtensorConan(ConanFile):
     name = "xtensor"
-    version = "0.16.4"
+    version = "0.20.8"
     license = "BSD-3"
     url = "https://github.com/darcamo/conan-xtensor"
     description = "C++ tensors with broadcasting and lazy computing"
@@ -14,9 +14,11 @@ class XtensorConan(ConanFile):
     generators = "cmake"
     # No settings/options are necessary, this is header only
 
+    # TODO: Add option for openmp that sets USE_OPENMP in CMake
+
     def requirements(self):
-        self.requires("xtl/0.4.12@darcamo/stable")
-        self.requires("xsimd/6.0.0@darcamo/stable")
+        self.requires("xtl/0.6.4@darcamo/stable")
+        self.requires("xsimd/7.2.3@darcamo/stable")
 
     def source(self):
         tools.get("https://github.com/QuantStack/xtensor/archive/{0}.zip".format(self.version))
